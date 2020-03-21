@@ -17,7 +17,9 @@ from django.contrib import admin
 from django.urls import path, re_path
 from todo_app import views
 
+app_name = 'todo_app'
+
 urlpatterns = [    
-    re_path(r'^$', views.index),
-    re_path(r'^detail/', views.detail)
+    re_path(r'^$', views.index, name='index'),
+    re_path(r'^(?P<task_id>[0-9]+)/$', views.detail, name='detail')
 ]
