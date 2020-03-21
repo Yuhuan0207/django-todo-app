@@ -15,5 +15,8 @@ def index(request):
     return render(request, 'todo_app/index.html', context)
 
 def detail(request, task_id):
-
-    return HttpResponse('This is the detail page of task No. %s' % task_id)
+    task = Task.objects.get(pk=task_id)
+    context = {
+        'task': task,
+    }
+    return render(request, 'todo_app/detail.html', context)
