@@ -1,12 +1,21 @@
-{% if task_list%}
-    <ul>
-        {% for task in task_list %}
-            <li>
-                <a href="{% url 'todo_app:detail' task.id %}"">{{task.task_name}}</a>
-            </li>
-        {% endfor %}
-    </ul>
-{% else %}
+{% load static %}
 
-
-{% endif %}
+<html>
+    <head>                
+        <link rel="stylesheet" type="text/css" href="{% static 'todo_app/style.css' %}">
+    </head>
+    <body>
+        {% if task_list%}
+            <ul>
+                {% for task in task_list %}
+                    <li>
+                        <a href="{% url 'todo_app:detail' task.id %}"">{{task.task_name}}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+        
+        
+        {% endif %}
+    </body>
+</html>
