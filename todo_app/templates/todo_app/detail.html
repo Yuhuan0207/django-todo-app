@@ -1,2 +1,6 @@
-{{task.task_name}} </br>
-{{task.task_priority}}
+{% extends 'todo_app/base.html' %}
+
+{% block body %}
+    {{task.task_name}} </br>
+    {{task.task_priority}}
+{% endblock %}

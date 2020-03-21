@@ -1,44 +1,39 @@
+{% extends 'todo_app/base.html' %}
 {% load static %}
 
 <html>
     <head>                
-        <link rel="stylesheet" type="text/css" href="{% static 'todo_app/style.css' %}">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">        
+
     </head>
-    <body>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <a class="navbar-brand" href="#">Todo App</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                  <li class="nav-item active">
-                    <a class="nav-link" href="#">Item 1<span class="sr-only">(current)</span></a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">Item 2</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">Item 3</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Item 4</a>
-                  </li>
-                </ul>
-              </div>
-        </nav>
-        {% if task_list%}
-            <ul>
-                {% for task in task_list %}
-                    <li>
-                        <a href="{% url 'todo_app:detail' task.id %}"">{{task.task_name}}</a>
-                    </li>
-                {% endfor %}
-            </ul>
-        {% else %}
-        
-        
-        {% endif %}
+    <body>        
+        {% block body %}
+        <div class="container">
+            <h2>Today's list</h2>
+            <p>Let's get things done!!</p>
+            <table class = "table">
+                <thead>
+                    <tr>
+                        <th>Task Name</th>
+                        <th>Task Priority</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% if task_list%}
+                        {% for task in object_list %}
+                        <tr class="active">
+                            <td><a href="{% url 'todo_app:detail' task.id %}">{{task.task_name}}</a></td>
+                            <td><b>{{task.task_priority}}</b></td>
+                            <td><button type="submit" class="btn btn-success">Done</button></td>
+                        </tr>
+                        {% endfor %}
+                    {% else %}
+
+                    {% endif %}
+                </tbody>
+            </table>
+        </div>
+        {% endblock %}
     </body>
 </html>
